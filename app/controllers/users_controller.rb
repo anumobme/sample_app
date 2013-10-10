@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 
   def index
     #@users = User.all
-    @users = User.paginate(page: params[:page], per_page: 10)   
+    @users = User.paginate(page: params[:page], per_page: 10)      
   end
 
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 10)
     #us    =  User.where(id: params[:id]).count
     #render :text => us
   end
